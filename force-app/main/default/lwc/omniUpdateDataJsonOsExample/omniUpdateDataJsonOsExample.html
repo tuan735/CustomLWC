@@ -1,0 +1,33 @@
+<template>
+  <div>Map Response to the Omniscript's Data JSON via omniUpdateDataJson</div>
+
+  <div>
+    <lightning-button
+      variant="success"
+      label="Post data set 1"
+      title="Successful action"
+      onclick={handleClick}
+      class="slds-m-left_x-small"
+    ></lightning-button>
+  </div>
+
+  <div>
+    <lightning-combobox
+      name=""
+      label="aggregateOverride"
+      value={aggregrateOverrideValue}
+      options={options}
+      onchange={aggregrateOverrideHandle}
+    ></lightning-combobox>
+  </div>
+
+  <div>
+    <lightning-button
+      variant="success"
+      label="Post data set 2"
+      title="Successful action"
+      onclick={handleClick2}
+      class="slds-m-left_x-small"
+    ></lightning-button>
+  </div>
+</template>

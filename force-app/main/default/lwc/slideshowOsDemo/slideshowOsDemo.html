@@ -1,0 +1,30 @@
+<template>
+  <div class="slideshow-container">
+    <template for:each={imagesdata} for:item="image">
+      <div class="mySlides fade" key={image.Id}>
+        <img src={image.ImageSource} style="width: 100%" />
+        <div class="text">{image.Caption}</div>
+      </div>
+    </template>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" data-to-slide="previous" onclick={plusSlides}>&#10094;</a>
+    <a class="next" data-to-slide="next" onclick={plusSlides}>&#10095;</a>
+  </div>
+
+  <br />
+
+  <!-- The dots/circles -->
+  <div style="text-align: center">
+    <!-- <span class="dot" data-slide-index=0 onclick={currentSlide}></span>
+    <span class="dot" data-slide-index=1 onclick={currentSlide}></span> -->
+    <template for:each={imagesdata} for:item="image" for:index="index">
+      <span
+        class="dot"
+        data-slide-index={index}
+        onclick={currentSlide}
+        key={image.Id}
+      ></span>
+    </template>
+  </div>
+</template>
