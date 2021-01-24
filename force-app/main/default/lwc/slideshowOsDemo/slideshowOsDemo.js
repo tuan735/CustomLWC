@@ -5,8 +5,11 @@
 
 import {
     LightningElement,
-    api
+    api, 
+    wire
 } from 'lwc';
+import { getRecord } from 'lightning/uiRecordApi';
+// import CONTENTVERSION_OBJECT from '@salesforce/schema/ContentVersion';
 import {
     OmniscriptBaseMixin
 } from 'vlocity_cmt/omniscriptBaseMixin'; //To-do: replace with namespace
@@ -14,6 +17,7 @@ import {
 export default class SlideshowOsDemo extends OmniscriptBaseMixin(LightningElement) {
     _slideIndex = 1;
     _imagesdata;
+    _contentDocumentId = '';
 
     _sampleData = [{
             "ImageSource": "https://www.w3schools.com/howto/img_nature_wide.jpg",
@@ -36,6 +40,10 @@ export default class SlideshowOsDemo extends OmniscriptBaseMixin(LightningElemen
         this._imagesdata = value;
         window.console.log("after setter, images data: ", JSON.stringify(this._imagesdata));
     }
+
+    // @wire
+    // (getRecord, {recordId: '0684x000000YEK4AAO', fields: [CONTENT_DOCUMENT_ID_FIELD]})
+    // contentVersion;
 
     // Next/previous controls
     plusSlides(event) {
