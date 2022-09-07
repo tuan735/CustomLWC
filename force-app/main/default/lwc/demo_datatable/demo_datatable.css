@@ -1,0 +1,60 @@
+/*.demo-datatable-container {
+    height: 410px;
+}*/
+
+.header {
+	align-items: flex-end;
+	margin-bottom: 30px;
+}
+.advanced-filter-button lightning-input {
+	float: right;
+    text-align: center;
+}
+.advanced-filters {
+	align-items: flex-end;
+	margin-top: 20px;
+}
+.advanced-filters>div {
+	margin-top: 20px;
+}
+.advanced-filters lightning-combobox, .advanced-filters lightning-input {
+	display: grid;
+}
+.advanced-filters .boolean-filters lightning-input {
+	text-align: center;
+}
+
+.footer {
+	margin-top: 20px;	
+}
+.selection-message {
+	text-align: left;
+}
+.total-rows {
+	text-align: center;
+}
+.pagination {	
+	text-align: right;
+}
+.pagination > lightning-button, .pagination > span {
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/* Styling of the lightning-datatable component can be achieved by using the following overrides in OmniScript
+
+	Setup -> Styling Options -> Lightning Design System Token Overrides
+
+	// lightning-datatable SLDS/LWC Token Overrides	
+	--lwc-tableColorTextHeader: #fff;               // Header Text          
+	--lwc-tableColorBackgroundHeader: #151824;      // Header Background
+	--lwc-tableColorBackgroundHeaderHover: #6E6E6E; // Header Background (on hover)
+	--lwc-colorTextWeak: #fff;                      // Row Text
+	--lwc-colorBackgroundAlt: #151824;              // Row Background
+	--lwc-colorBackgroundRowHover: #6E6E6E;         // Row Background (on hover)
+	--lwc-colorBackgroundRowSelected: #6E6E6E;      // Row Background (on selection)
+	--lwc-colorBorder: #fff;                        // Border Color
+	--sds-c-checkbox-mark-color-foreground: #fff;   // Checkmark Color
+	
+*/

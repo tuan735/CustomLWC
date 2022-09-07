@@ -1,0 +1,340 @@
+<template>
+
+    <!-- Header -->
+    <div class="header slds-grid slds-wrap slds-gutters" if:false={hideSearch}>
+      
+      <!-- Search Bar -->
+      <div class="slds-size_10-of-12">
+        <lightning-input type="search" placeholder="Search" onchange={handleSearch}></lightning-input>
+      </div>
+  
+      <!-- Advanced Filters Toggle -->
+      <div class="advanced-filter-button slds-col slds-size_2-of-12">
+  
+        <lightning-input type="toggle" label="Advanced Filters" name="advanced-filter-toggle" onchange={toggleAdvancedFilters}></lightning-input>
+  
+      </div>
+  
+      <!-- Advanced Filters -->
+      <div class="advanced-filters slds-col slds-size_1-of-1 slds-grid slds-wrap slds-gutters" if:true={showAdvancedFilters}>
+        
+        <!-- Boolean Filters (Stateful Buttons)-->
+        <div class="boolean-filters slds-col slds-size_1-of-1 slds-grid slds-wrap slds-gutters">
+        
+          <!-- Only Show Selected Rows -->
+          <div class="slds-col slds-size_1-of-6">
+            <label class="slds-form-element__label">Selected Rows</label>
+            <lightning-input type="toggle" onchange={showOnlySelectedRows}></lightning-input>
+          </div>
+  
+          <!-- Boolean Filter 1 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showBooleanFilter1}>
+            <label class="slds-form-element__label">{booleanFilterLabel1}</label>
+            <lightning-input data-index="1" type="toggle" onchange={handleBooleanFilter}></lightning-input>
+          </div>
+  
+          <!-- Boolean Filter 2 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showBooleanFilter2}>
+            <label class="slds-form-element__label">{booleanFilterLabel2}</label>
+            <lightning-input data-index="2" type="toggle" onchange={handleBooleanFilter}></lightning-input>
+          </div>
+          
+          <!-- Boolean Filter 3 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showBooleanFilter3}>
+            <label class="slds-form-element__label">{booleanFilterLabel3}</label>
+            <lightning-input data-index="3" type="toggle" onchange={handleBooleanFilter}></lightning-input>
+          </div>        
+  
+          <!-- Boolean Filter 4 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showBooleanFilter4}>
+            <label class="slds-form-element__label">{booleanFilterLabel4}</label>
+            <lightning-input data-index="4" type="toggle" onchange={handleBooleanFilter}></lightning-input>
+          </div>
+  
+          <!-- Boolean Filter 5 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showBooleanFilter5}>
+            <label class="slds-form-element__label">{booleanFilterLabel5}</label>
+            <lightning-input data-index="5" type="toggle" onchange={handleBooleanFilter}></lightning-input>
+          </div>
+  
+        </div> <!-- End of Boolean Filters -->
+  
+        <!-- Text Filters (Comboboxes) -->
+        <div class="text-filters slds-col slds-size_1-of-1 slds-grid slds-wrap slds-gutters" if:true={showTextFilters}>
+          
+          <!-- Text Filter 1 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter1}>
+            <lightning-combobox
+              data-index="1"
+              label={textFilterLabel1}
+              name={textFilterName1}
+              value={textFilterValue1}
+              placeholder={textFilterPlaceholder1}
+              options={textFilterOptions1}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>
+  
+          <!-- Text Filter 2 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter2}>
+            <lightning-combobox
+              data-index="2"
+              label={textFilterLabel2}
+              name={textFilterName2}
+              value={textFilterValue2}
+              placeholder={textFilterPlaceholder2}
+              options={textFilterOptions2}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>
+  
+          <!-- Text Filter 3 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter3}>
+            <lightning-combobox
+              data-index="3"
+              label={textFilterLabel3}
+              name={textFilterName3}
+              value={textFilterValue3}
+              placeholder={textFilterPlaceholder3}
+              options={textFilterOptions3}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>
+  
+          <!-- Text Filter 4 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter4}>
+            <lightning-combobox
+              data-index="4"
+              label={textFilterLabel4}
+              name={textFilterName4}
+              value={textFilterValue4}
+              placeholder={textFilterPlaceholder4}
+              options={textFilterOptions4}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>
+  
+          <!-- Text Filter 5 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter5}>
+            <lightning-combobox
+              data-index="5"
+              label={textFilterLabel5}
+              name={textFilterName5}
+              value={textFilterValue5}
+              placeholder={textFilterPlaceholder5}
+              options={textFilterOptions5}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>
+  
+          <!-- Text Filter 6 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showTextFilter6}>
+            <lightning-combobox
+              data-index="6"
+              label={textFilterLabel6}
+              name={textFilterName6}
+              value={textFilterValue6}
+              placeholder={textFilterPlaceholder6}
+              options={textFilterOptions6}
+              onchange={handleTextFilter}>
+            </lightning-combobox>
+          </div>        
+  
+        </div>  <!-- End of Text Filters -->
+  
+        <!-- Numeric Filters (Min/Max Inputs) -->
+        <div class="numeric-filters slds-col slds-size_1-of-1 slds-grid slds-wrap slds-gutters" if:true={showNumericFilters}>
+          
+          <!-- Numeric Filter 1 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter1}>
+            <lightning-input
+              data-index="1"
+              type="number"
+              label={numericFilterMinLabel1}
+              name="numericFilterNameMin1"                
+              value={numericFilterMinValue1}
+              placeholder={numericFilterMinPlaceholder1}
+              onchange={handleNumericFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter1}>
+            <lightning-input
+              data-index="1"
+              type="number"
+              label={numericFilterMaxLabel1}
+              name="numericFilterNameMax1"                
+              value={numericFilterMaxValue1}
+              placeholder={numericFilterMaxPlaceholder1}
+              onchange={handleNumericFilterMax}>
+            </lightning-input>
+          </div>
+  
+          <!-- Numeric Filter 2 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter2}>
+            <lightning-input
+              data-index="2"
+              type="number"
+              label={numericFilterMinLabel2}
+              name="numericFilterNameMin2"  
+              value={numericFilterMinValue2}
+              placeholder={numericFilterMinPlaceholder2}
+              onchange={handleNumericFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter2}>
+            <lightning-input
+              data-index="2"
+              type="number"
+              label={numericFilterMaxLabel2}
+              name="numericFilterNameMax2"
+              value={numericFilterMaxValue2}
+              placeholder={numericFilterMaxPlaceholder2}
+              onchange={handleNumericFilterMax}>
+            </lightning-input>
+          </div>
+  
+          <!-- Numeric Filter 3 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter3}>
+            <lightning-input
+              data-index="3"
+              type="number"
+              label={numericFilterMinLabel3}
+              name="numericFilterNameMin3"
+              value={numericFilterMinValue3}
+              placeholder={numericFilterMinPlaceholder3}
+              onchange={handleNumericFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showNumericFilter3}>
+            <lightning-input
+              data-index="3"
+              type="number"
+              label={numericFilterMaxLabel3}
+              name="numericFilterNameMax3"
+              value={numericFilterMaxValue3}
+              placeholder={numericFilterMaxPlaceholder3}
+              onchange={handleNumericFilterMax}>
+            </lightning-input>
+          </div>
+  
+        </div>  <!-- End of Numeric Filters-->
+  
+        <!-- Date Filters (Min/Max Inputs) -->
+        <div class="date-filters slds-col slds-size_1-of-1 slds-grid slds-wrap slds-gutters" if:true={showDateFilters}>
+          
+          <!-- Date Filter 1 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter1}>
+            <lightning-input
+              data-index="1"
+              type="date"
+              label={dateFilterMinLabel1}
+              name="dateFilterNameMin1"                
+              value={dateFilterMinValue1}
+              placeholder={dateFilterMinPlaceholder1}
+              onchange={handleDateFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter1}>
+            <lightning-input
+              data-index="1"
+              label={dateFilterMaxLabel1}
+              type="date"
+              name="dateFilterNameMax1"                
+              value={dateFilterMaxValue1}
+              placeholder={dateFilterMaxPlaceholder1}
+              onchange={handleDateFilterMax}>
+            </lightning-input>
+          </div>
+  
+          <!-- Date Filter 2 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter2}>
+            <lightning-input
+              data-index="2"
+              type="date"
+              label={dateFilterMinLabel2}
+              name="dateFilterNameMin2"                
+              value={dateFilterMinValue2}
+              placeholder={dateFilterMinPlaceholder2}
+              onchange={handleDateFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter2}>
+            <lightning-input
+              data-index="2"
+              type="date"
+              label={dateFilterMaxLabel2}
+              name="dateFilterNameMax2"
+              value={dateFilterMaxValue2}
+              placeholder={dateFilterMaxPlaceholder2}
+              onchange={handleDateFilterMax}>
+            </lightning-input>
+          </div>
+  
+          <!-- Date Filter 3 -->
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter3}>
+            <lightning-input
+              data-index="3"
+              type="date"
+              label={dateFilterMinLabel3}
+              name="dateFilterNameMin3"
+              value={dateFilterMinValue3}
+              placeholder={dateFilterMinPlaceholder3}
+              onchange={handleDateFilterMin}>
+            </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-6" if:true={showDateFilter3}>
+            <lightning-input
+              data-index="3"
+              type="date"
+              label={dateFilterMaxLabel3}
+              name="dateFilterNameMax3"
+              value={dateFilterMaxValue3}
+              placeholder={dateFilterMaxPlaceholder3}
+              onchange={handleDateFilterMax}>
+            </lightning-input>
+          </div>
+  
+        </div>  <!-- End of Date Filters -->
+  
+      </div>
+    </div>
+  
+    <!-- Main Table -->
+    <div class="body slds-size_1-of-1">    
+  
+      <lightning-datatable columns={columns} 
+                           data={rows}
+                           key-field={keyField}
+                           max-row-selection={maxRowSelection}
+                           hide-checkbox-column={hideCheckboxColumn}
+                           show-row-number-column={showRowNumberColumn}
+                           sorted-by={sortedBy}
+                           sorted-direction={sortedDirection}
+                           onsort={handleSort}                
+                           selected-rows={_selectedRows}         
+                           onrowselection={handleRowSelection}                         
+                           onsave={handleSave}
+                           draft-values={draftValues}>
+      </lightning-datatable>
+    </div>
+  
+    <!-- Footer -->
+    <div class="footer slds-size_1-of-1 slds-grid">
+  
+      <div class="selection-message slds-col" if:true={showSelectionMessage}>
+        <lightning-badge label={selectionMessage}></lightning-badge>
+      </div>
+  
+      <div class="total-rows slds-col">
+        <lightning-badge label={totalTotalRowsMessage}></lightning-badge>
+      </div>
+  
+      <div class="pagination slds-col" if:true={showPagination}>
+        <lightning-button variant="base" icon-name="utility:chevronleft" icon-position="left" onclick={showPreviousPage} disabled={previousButtonDisabled}></lightning-button>
+        <span><lightning-badge label={paginationMessage}></lightning-badge></span>
+        <lightning-button variant="base" icon-name="utility:chevronright" icon-position="right" onclick={showNextPage} disabled={nextButtonDisabled}></lightning-button>
+      </div>
+  
+    </div>
+    
+  </template>
